@@ -2,7 +2,7 @@
 // Pede permissão para acessara câmera, ele gera um erro caso a permisão seja negada
 Instascan.Camera.getCameras().then(cameras => {
     if (cameras.length > 0) {
-        alert(cameras.length)
+        alert(cameras.length())
         scanner.start(cameras[0]);
     }
 });
