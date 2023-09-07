@@ -3,7 +3,7 @@
 Instascan.Camera.getCameras().then(cameras => {
     if (cameras.length > 0) {
         alert(cameras)
-        scanner.start(cameras[0]);
+        scanner.start(cameras[1]);
     }
 });
 
