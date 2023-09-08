@@ -18,6 +18,7 @@ let scanner = new Instascan.Scanner({
 scanner.addListener('scan', function (content) {
     
     // alert('Escaneou o conteudo: ' + content);
+    
     retornaScan(content);
     content = ""
 });
@@ -28,4 +29,3 @@ scanner.addListener('scan', function (content) {
 function retornaScan(codigoQr) {
     alert(codigoQr);
 }
-
