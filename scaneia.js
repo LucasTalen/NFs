@@ -44,6 +44,6 @@ function enviarCodigoQR(content){
 
         }
     }
-    xhr.open('GET','https://df87-2804-86d0-4015-2100-1059-7bc1-2581-5071.ngrok-free.app/api', true)
+    xhr.open('GET','127.0.0.1:5000/api', true)
     xhr.send()
 }
