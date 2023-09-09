@@ -6,7 +6,6 @@ import pandas as pd
 #---------------------------------------
 #você tem que herdar o meu código js no progama e puxar a função 
 total = 0.0
-compras = []
 def extrairDados(total,url):
     site = requests.get(url).text
     nome = BeautifulSoup(site, "html.parser")
@@ -21,7 +20,7 @@ def extrairDados(total,url):
         valor = float(b[-1][-1].replace(",","."))
         valor = round(valor,2)
         compra = dict(loja = loja, preco =valor)
-        compras.append(compra)
+        return jsonify(compra)        
 
 #------------------------------------------
 
@@ -33,8 +32,7 @@ app = Flask(__name__)
 
 @app.route("/api")
 def hello_world():
-    dados,valor = extrairDados(total,url)
-
-    return f"<p> {dados}e </p>"   
+    resposta = extrairDados(total,url)
+    return resposta
 
 app.run(debug=True)
