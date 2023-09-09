@@ -43,6 +43,7 @@ function enviarCodigoQR(){
     const preco = data.preco;
     document.getElementById('loja').innerText = `Loja: ${loja}`;
     document.getElementById('preco').innerText = `Preço: R$ ${preco}`;
+    alert(data)
   })
   .catch(error => {
     console.error('Erro ao buscar dados:', error);
