@@ -50,7 +50,8 @@ async function enviarCodigoQR(){
   // });
   url = "https://17f3-2804-86d0-4015-2100-f49d-6ac7-423b-66b.ngrok-free.app/api"
   const response = await fetch(url)
-  alert(response)
-  console.log(response)
+  const data = await response.json()
+  alert(data)
+  console.log(data)
 
 }
