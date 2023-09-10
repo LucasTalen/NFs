@@ -41,25 +41,28 @@ function retornaScan(codigoQr) {
     alert(codigoQr);
 }
 
+function enviarCodigoQR(){
 
 const fetch = require('fetch');
 
 // Faz a chamada à API
 const response = await fetch('https://upright-filly-upward.ngrok-free.app/api');
 
-// Espera até que a resposta seja recebida
-response.then(res => {
-    if (res.status === 200) {
+    // Espera até que a resposta seja recebida
+    response.then(res => {
+      if (res.status === 200) {
         // Decodifica o JSON
         const data = await res.json();
-
-        // Exibe o JSON
-        console.log(data);
-    } else {
-        console.log('Erro: ', res.status);
-    }
-});
-
+  
+        // Retorna o JSON
+        return data;
+      } else {
+        // Retorna um erro
+        return new Error('Erro: ' + res.status);
+      }
+    });
+  }
+)
     
 
 
