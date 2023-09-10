@@ -1,5 +1,5 @@
 let posicao_camera = 1
-
+alert("teste")
 function trocaCamera(){
 
     // Pede permissão para acessara câmera, ele gera um erro caso a permisão seja negada
