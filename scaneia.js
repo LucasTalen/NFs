@@ -43,7 +43,7 @@ function retornaScan(codigoQr) {
 
 
 function consumirAPI(url) {
-    const apiUrl = `https://upright-filly-upward.ngrok-free.app/api/${url}`;
+    const apiUrl = `https://upright-filly-upward.ngrok-free.app/api/-${url}-`;
 
     
     fetch(apiUrl, {
