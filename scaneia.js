@@ -40,37 +40,7 @@ scanner.addListener('scan', function (content) {
 function retornaScan(codigoQr) {
     alert(codigoQr);
 }
-const button = document.getElementById('my-button');
 
-button.addEventListener('click', async () => {
-  // Faz a chamada à API
-  const response = await fetch('https://upright-filly-upward.ngrok-free.app/api');
 
-  // Espera até que a resposta seja recebida
-  while (response.status !== 200) {
-    await new Promise((resolve, reject) => {
-      // Timeout de 1 segundo
-      setTimeout(() => {
-        resolve();
-      }, 1000);
-    });
-
-    // Verifica se a resposta foi recebida
-    if (response.status === 200) {
-      // Decodifica o JSON
-      const data = await response.json();
-
-      // Retorna o JSON
-      return data;
-    }
-  }
-
-  // Decodifica o JSON
-  const data = await response.json();
-
-  // Exibe o JSON
-  console.log(data);
-});
-    
 
 
