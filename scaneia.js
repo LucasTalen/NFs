@@ -55,7 +55,7 @@ function consumirAPI() {
                 <p>Loja: </p>
                 <p>Preço: R$ ${data.resposta}</p>
             `;
-            console.log(data.resposta)
+            console.log(data)
         })
         .catch(error => {
             console.error('Ocorreu um erro ao consumir a API:', error);
