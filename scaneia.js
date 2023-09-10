@@ -1,9 +1,23 @@
+let posicao_camera = 0
+
+
+
+function trocaCamera(){
+    if (!Camera.length > posicao_camera){
+      posicao_camera += 1
+    }else{
+      posicao_camera -= 1
+    }
+
+
+}
+
 
 // Pede permissão para acessara câmera, ele gera um erro caso a permisão seja negada
 Instascan.Camera.getCameras().then(cameras => {
     if (cameras.length > 0) {
         alert(cameras)
-        scanner.start(cameras[1]);
+        scanner.start(cameras[posicao_camera]);
     }
 });
 
@@ -31,24 +45,19 @@ function retornaScan(codigoQr) {
 }
 
 
-async function enviarCodigoQR(){
+function enviarCodigoQR(){
+    const socket = io.connect("https://upright-filly-upward.ngrok-free.app/api")
 
-  //   fetch('https://17f3-2804-86d0-4015-2100-f49d-6ac7-423b-66b.ngrok-free.app')  // Altere a URL para a localização correta da sua API Flask
-  // .then(response => response.json())
-  // .then(data => {
-  //   // Aqui, 'data' conterá o JSON retornado pela sua API Flask
-  //   console.log(data);
+    socket.on('connect', () => {
+        console.log('Conectado ao servidor WebSocket');
+      });
     
-  //   // Você pode agora manipular os dados como quiser, por exemplo, exibir na página HTML.
-  //   const loja = data.loja;
-  //   const preco = data.preco;
-  //   document.getElementById('loja').innerText = `Loja: ${loja}`;
-  //   document.getElementById('preco').innerText = `Preço: R$ ${preco}`;
-  // })
-  // .catch(error => {
-  //   console.error('Erro ao buscar dados:', error);
-  // });
-  url = "https://17f3-2804-86d0-4015-2100-f49d-6ac7-423b-66b.ngrok-free.app/api"
-
+    socket.on('dados-extraidos', (data) => {
+    
+    console.log('Dados recebidos:', data);
+    alert(data)
+    
+    });
+    
 
 }
