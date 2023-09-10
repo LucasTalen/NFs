@@ -41,68 +41,24 @@ function retornaScan(codigoQr) {
     alert(codigoQr);
 }
 
-function enviarCodigoQR(){
-    // const socket = io.connect("https://upright-filly-upward.ngrok-free.app/api")
+async function enviarCodigoQR(){
+    const fetch = require('fetch');
 
-    // socket.on('connect', () => {
-    //     console.log('Conectado ao servidor WebSocket');
-    //   });
+    // Faz a chamada à API
+    const response = await fetch('https://upright-filly-upward.ngrok-free.app/api');
     
-    // socket.on('dados-extraidos', (data) => {
+    // Espera até que a resposta seja recebida
+    response.then(res => {
+        if (res.status === 200) {
+            // Decodifica o JSON
+            const data = await res.json();
     
-    // console.log('Dados recebidos:', data);
-    // alert(data)
-    
-    // });
-
-    // setInterval(() => {
-    //     fetch('https://upright-filly-upward.ngrok-free.app/api')
-    //       .then(response => response.json())
-    //       .then(data => {
-    //         // Manipular os dados recebidos aqui
-    //         console.log(data);
-    //       })
-    //       .catch(error => {
-    //         console.error('Erro ao buscar dados:', error);
-    //       });
-    //   }, 5000); // Realizar a consulta a cada 5 segundos (5000 milissegundos)
-    
-
-
-    //   const eventSource = new EventSource('https://upright-filly-upward.ngrok-free.app/api');
-
-    //   eventSource.onmessage = (event) => {
-    //     const data = JSON.parse(event.data);
-    //     // Manipular os dados recebidos aqui
-    //     const dadosContainer = document.getElementById('dados-container');
-    //     dadosContainer.innerHTML = `
-    //     <p>Loja: ${data.loja}</p>
-    //     <p>Preço: ${data.preco}</p>
-    //     `;
-    //   };
-
-    //   eventSource.onerror = (error) => {
-    //     console.error('Erro de SSE:', error);
-    //   };
-
-
-      const fetch = require('fetch');
-
-      // Faz a chamada à API
-      const response = await fetch('https://upright-filly-upward.ngrok-free.app/api');
-      
-      // Espera até que a resposta seja recebida
-      response.then(res => {
-          if (res.status === 200) {
-              // Decodifica o JSON
-              const data = await res.json();
-      
-              // Exibe o JSON
-              console.log(data);
-          } else {
-              console.log('Erro: ', res.status);
-          }
-      });
+            // Exibe o JSON
+            console.log(data);
+        } else {
+            console.log('Erro: ', res.status);
+        }
+    });
 
     
 
