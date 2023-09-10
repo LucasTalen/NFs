@@ -56,7 +56,7 @@ async function enviarCodigoQR(){
     }
 
     // Chama a função
-    const data = await getApiResponse('https://upright-filly-upward.ngrok-free.app/api');
+    const data = await enviarCodigoQR();
 
     // Exibe o JSON
     console.log(data);
