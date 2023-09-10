@@ -49,7 +49,7 @@ async function enviarCodigoQR(){
     const response = await fetch('https://upright-filly-upward.ngrok-free.app/api');
 
         // Espera até que a resposta seja recebida
-        response.then(res => {
+        response.then(async res => {
         if (res.status === 200) {
             // Decodifica o JSON
             const data = await res.json();
