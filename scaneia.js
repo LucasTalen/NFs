@@ -8,18 +8,27 @@ function trocaCamera(){
     }else{
       posicao_camera -= 1
     }
+    // Pede permissão para acessara câmera, ele gera um erro caso a permisão seja negada
+    Instascan.Camera.getCameras().then(cameras => {
+        if (cameras.length > 0) {
+            alert(cameras)
+            scanner.start(cameras[posicao_camera]);
+        }
+    });
+
+    console.log(posicao_camera)
 
 
 }
 
 
-// Pede permissão para acessara câmera, ele gera um erro caso a permisão seja negada
-Instascan.Camera.getCameras().then(cameras => {
-    if (cameras.length > 0) {
-        alert(cameras)
-        scanner.start(cameras[posicao_camera]);
-    }
-});
+// // Pede permissão para acessara câmera, ele gera um erro caso a permisão seja negada
+// Instascan.Camera.getCameras().then(cameras => {
+//     if (cameras.length > 0) {
+//         alert(cameras)
+//         scanner.start(cameras[posicao_camera]);
+//     }
+// });
 
 // Liga a câmera com o front-end, para a visualização do usuário
 let scanner = new Instascan.Scanner({
