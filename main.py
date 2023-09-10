@@ -35,8 +35,9 @@ app = Flask(__name__)
 # CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 
-@app.route("/api/<url>", methods=['GET'])
-def hello_world(url):
+@app.route("/api", methods=['GET'])
+def hello_world():
+    url = request.args.get('url')
     print(url)
     # resposta = extrairDados(url)
     # return resposta
