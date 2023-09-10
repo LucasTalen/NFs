@@ -38,7 +38,7 @@ CORS(app)
 socketIO = SocketIO(app)
 
 
-@socketio.on('connect')
+@socketIO.on('connect')
 def criarConexao():
     emit('Conectado a API')
 
@@ -50,4 +50,4 @@ def hello_world():
     socketIO.emit(resposta)
     return jsonify(resposta)
 
-socketIO.run(debug=True,port=80)
+socketIO.run(app,debug=True,port=80)

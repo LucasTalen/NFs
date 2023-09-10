@@ -18,7 +18,7 @@ function trocaCamera(){
             scanner.start(cameras[posicao_camera]);
         }
     });
-    console.log(Camera.length())
+    console.log(cameras.length())
     console.log(posicao_camera)
 
 
