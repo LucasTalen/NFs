@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, Response,request
-
+from flask_cors import CORS
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
@@ -32,7 +32,7 @@ def extrairDados(url):
 
 
 app = Flask(__name__)
-
+CORS(app)
 
 
 @app.route("/api", methods=['GET'])
