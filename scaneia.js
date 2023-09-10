@@ -46,7 +46,7 @@ function enviarCodigoQR(){
     // }
     // xhr.open('GET','http://127.0.0.1:5000/api/' + content, true)
     // xhr.send()
-    fetch('https://df87-2804-86d0-4015-2100-1059-7bc1-2581-5071.ngrok-free.app/api')  // Altere a URL para a localização correta da sua API Flask
+    fetch('https://17f3-2804-86d0-4015-2100-f49d-6ac7-423b-66b.ngrok-free.app')  // Altere a URL para a localização correta da sua API Flask
   .then(response => response.json())
   .then(data => {
     // Aqui, 'data' conterá o JSON retornado pela sua API Flask
