@@ -8,7 +8,7 @@ function trocaCamera(){
     Instascan.Camera.getCameras().then(cameras => {
         if (cameras.length > 0) {
             alert(cameras)
-            if (!Camera.length > posicao_camera){
+            if (!cameras.length > posicao_camera){
                 posicao_camera += 1
             }
             else{
