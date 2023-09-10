@@ -4,7 +4,6 @@ function trocaCamera(){
     // Pede permissão para acessara câmera, ele gera um erro caso a permisão seja negada
     Instascan.Camera.getCameras().then(cameras => {
         if (cameras.length > 0) {
-            alert(cameras)
             console.log(cameras.length)
             console.log(cameras.length())
             console.log(posicao_camera)
