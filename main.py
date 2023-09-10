@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, Response
 from flask_cors import CORS
 from flask_socketio import SocketIO, emit
 
@@ -47,7 +47,6 @@ def criarConexao():
 @app.route("/api")
 def hello_world():
     resposta = extrairDados("https://portalsped.fazenda.mg.gov.br/portalnfce/sistema/qrcode.xhtml?p=31230713574594030508650010005249781378283311|2|1|1|9CB061C0D016DBEDA8D27E6E20F4BA26025FF4A9")
-    socketIO.emit(resposta)
-    return jsonify(resposta)
+    return Response(jsonify(resposta), content_type='text/event-stream')
 
-socketIO.run(app,debug=True,port=80)
+app.run(debug=True,port=80)
