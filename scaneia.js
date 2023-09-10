@@ -92,8 +92,7 @@ function enviarCodigoQR(){
         // Manipular os dados recebidos aqui
         const dadosContainer = document.getElementById('dados-container');
         dadosContainer.innerHTML = `
-          <p>Loja: ${data.loja}</p>
-          <p>Preço: ${data.preco}</p>
+          <p>Loja: ${data}</p>
         `;
       };
 
