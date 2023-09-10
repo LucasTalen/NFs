@@ -46,16 +46,20 @@ function retornaScan(codigoQr) {
 function consumirAPI() {
     const apiUrl = 'https://upright-filly-upward.ngrok-free.app/api';
 
-    fetch(apiUrl)
-        .then(response => response.text())
+    
+    fetch(apiUrl, {
+        headers: {
+            'ngrok-skip-browser-warning': 'true'
+        }
+    })
+        .then(response => response.json())
         .then(data => {
-           
             const dadosApi = document.getElementById('dados-api');
             dadosApi.innerHTML = `
-                <p>Loja: </p>
-                <p>Preço: R$ ${data.resposta}</p>
+                <p>Loja: ${data.loja}</p>
+                <p>Preço: R$ ${data.preco}</p>
             `;
-            console.log(data)
+            console.log(data);
         })
         .catch(error => {
             console.error('Ocorreu um erro ao consumir a API:', error);
