@@ -1,5 +1,4 @@
 let posicao_camera = 1
-alert("teste1")
 function trocaCamera(){
 
     // Pede permissão para acessara câmera, ele gera um erro caso a permisão seja negada
@@ -58,6 +57,7 @@ function consumirAPI() {
             dadosApi.innerHTML = `
                 <p>Loja: ${data.loja}</p>
                 <p>Preço: R$ ${data.preco}</p>
+                <p>Preço: R$ ${data.resposta}</p>
             `;
             console.log(data);
         })
