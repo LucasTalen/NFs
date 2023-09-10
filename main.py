@@ -1,5 +1,4 @@
 from flask import Flask, jsonify, Response,request
-from flask_cors import CORS
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
@@ -32,15 +31,15 @@ def extrairDados(url):
 link = "https://portalsped.fazenda.mg.gov.br/portalnfce/sistema/qrcode.xhtml?p=31230713574594030508650010005249781378283311|2|1|1|9CB061C0D016DBEDA8D27E6E20F4BA26025FF4A9"
 
 app = Flask(__name__)
-# CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 
 @app.route("/api", methods=['GET'])
 def hello_world():
     url = request.args.get('url')
     print(url)
-    # resposta = extrairDados(url)
-    # return resposta
-    return url
+    resposta = extrairDados(url)
+    print(resposta)
+    return resposta
+    
 
 app.run(debug=True,port=80)
