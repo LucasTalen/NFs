@@ -52,8 +52,8 @@ function consumirAPI() {
            
             const dadosApi = document.getElementById('dados-api');
             dadosApi.innerHTML = `
-                <p>Loja: ${data.loja}</p>
-                <p>Preço: R$ ${data.preco.toFixed(2)}</p>
+                <p>Loja: </p>
+                <p>Preço: R$ ${data.resposta}</p>
             `;
         })
         .catch(error => {
