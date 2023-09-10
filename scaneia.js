@@ -44,7 +44,7 @@ function retornaScan(codigoQr) {
 
 
 function consumirAPI() {
-    const apiUrl = 'https://upright-filly-upward.ngrok-free.app/api?url=https://portalsped.fazenda.mg.gov.br/portalnfce/sistema/qrcode.xhtml?p=31230713574594030508650010005249781378283311|2|1|1|9CB061C0D016DBEDA8D27E6E20F4BA26025FF4A9';
+    const apiUrl = 'https://upright-filly-upward.ngrok-free.app/api';
 
     fetch(apiUrl)
         .then(response => response.json())
