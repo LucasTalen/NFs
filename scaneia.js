@@ -3,15 +3,16 @@ let posicao_camera = 0
 
 
 function trocaCamera(){
-    if (!Camera.length > posicao_camera){
-      posicao_camera += 1
-    }else{
-      posicao_camera -= 1
-    }
+
     // Pede permissão para acessara câmera, ele gera um erro caso a permisão seja negada
     Instascan.Camera.getCameras().then(cameras => {
         if (cameras.length > 0) {
             alert(cameras)
+            if (!Camera.length > posicao_camera){
+                posicao_camera += 1
+              }else{
+                posicao_camera -= 1
+              }
             scanner.start(cameras[posicao_camera]);
         }
     });
