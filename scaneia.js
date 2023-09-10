@@ -10,13 +10,14 @@ function trocaCamera(){
             alert(cameras)
             if (!Camera.length > posicao_camera){
                 posicao_camera += 1
-              }else{
+            }
+            else{
                 posicao_camera -= 1
-              }
+            }
             scanner.start(cameras[posicao_camera]);
         }
     });
-
+    console.log(Camera.length)
     console.log(posicao_camera)
 
 
