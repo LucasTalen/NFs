@@ -43,4 +43,24 @@ function retornaScan(codigoQr) {
 
 
 
+function consumirAPI() {
+    const apiUrl = 'https://upright-filly-upward.ngrok-free.app/api?url=https://portalsped.fazenda.mg.gov.br/portalnfce/sistema/qrcode.xhtml?p=31230713574594030508650010005249781378283311|2|1|1|9CB061C0D016DBEDA8D27E6E20F4BA26025FF4A9';
 
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+           
+            const dadosApi = document.getElementById('dados-api');
+            dadosApi.innerHTML = `
+                <p>Loja: ${data.loja}</p>
+                <p>Preço: R$ ${data.preco.toFixed(2)}</p>
+            `;
+        })
+        .catch(error => {
+            console.error('Ocorreu um erro ao consumir a API:', error);
+        });
+}
+
+
+const enviarBotao = document.getElementById('enviar');
+enviarBotao.addEventListener('click', consumirAPI);
