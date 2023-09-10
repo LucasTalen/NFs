@@ -1,4 +1,4 @@
-let posicao_camera = 0
+let posicao_camera = 1
 
 
 
@@ -14,6 +14,7 @@ function trocaCamera(){
             else{
                 posicao_camera -= 1
             }
+            console.log(scanner.activeCameraId = cameras[0].id)
             scanner.start(cameras[posicao_camera]);
         }
     });
