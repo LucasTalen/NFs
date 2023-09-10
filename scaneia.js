@@ -47,7 +47,7 @@ function consumirAPI() {
     const apiUrl = 'https://upright-filly-upward.ngrok-free.app/api';
 
     fetch(apiUrl)
-        .then(response => response.json())
+        .then(response => response.text())
         .then(data => {
            
             const dadosApi = document.getElementById('dados-api');
