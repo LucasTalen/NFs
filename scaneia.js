@@ -40,29 +40,29 @@ scanner.addListener('scan', function (content) {
 function retornaScan(codigoQr) {
     alert(codigoQr);
 }
-
+url = "https://upright-filly-upward.ngrok-free.app/api"
 async function enviarCodigoQR(){
-
-    const fetch = require('fetch');
-
     // Faz a chamada à API
-    const response = await fetch('https://upright-filly-upward.ngrok-free.app/api');
+    const response = await fetch(url);
 
-        // Espera até que a resposta seja recebida
-        response.then(async res => {
-        if (res.status === 200) {
-            // Decodifica o JSON
-            const data = await res.json();
-    
-            // Retorna o JSON
-            return data;
-        } else {
-            // Retorna um erro
-            return new Error('Erro: ' + res.status);
-        }
-        });
-    
+    // Espera até que a resposta seja recebida
+    await response.timeout(60000);
+
+    // Decodifica o JSON
+    const data = await response.json();
+
+    // Retorna o JSON
+    return data;
     }
+
+    // Chama a função
+    const data = await getApiResponse('https://upright-filly-upward.ngrok-free.app/api');
+
+    // Exibe o JSON
+    console.log(data);
+
+
+
     
 
 
