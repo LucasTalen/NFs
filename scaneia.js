@@ -57,7 +57,7 @@ function consumirAPI() {
             dadosApi.innerHTML = `
                 <p>Loja: ${data.loja}</p>
                 <p>Preço: R$ ${data.preco}</p>
-                <p>Preço: R$ ${data.resposta}</p>
+                
             `;
             console.log(data);
         })
