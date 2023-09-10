@@ -25,7 +25,7 @@ def extrairDados(url):
         valor = float(b[-1][-1].replace(",","."))
         valor = round(valor,2)
         compra = dict(loja = loja, preco =valor)
-        return compra        
+        return jsonify(compra)     
 
 #------------------------------------------
 
@@ -47,6 +47,6 @@ def criarConexao():
 @app.route("/api")
 def hello_world():
     resposta = extrairDados("https://portalsped.fazenda.mg.gov.br/portalnfce/sistema/qrcode.xhtml?p=31230713574594030508650010005249781378283311|2|1|1|9CB061C0D016DBEDA8D27E6E20F4BA26025FF4A9")
-    return Response(jsonify(resposta), content_type='text/event-stream')
+    return Response(resposta, content_type='text/event-stream')
 
 app.run(debug=True,port=80)
