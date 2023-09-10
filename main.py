@@ -1,6 +1,4 @@
-from flask import Flask, jsonify, Response
-# from flask_cors import CORS
-# from flask_socketio import SocketIO, emit
+from flask import Flask, jsonify, Response,request
 
 import requests
 from bs4 import BeautifulSoup
@@ -34,13 +32,6 @@ def extrairDados(url):
 
 
 app = Flask(__name__)
-# CORS(app)
-# socketIO = SocketIO(app)
-
-
-# @socketIO.on('connect')
-# def criarConexao():
-#     emit('Conectado a API')
 
 
 
