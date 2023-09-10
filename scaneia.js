@@ -1,7 +1,5 @@
 let posicao_camera = 1
 
-
-
 function trocaCamera(){
 
     // Pede permissão para acessara câmera, ele gera um erro caso a permisão seja negada
@@ -21,24 +19,12 @@ function trocaCamera(){
     console.log(cameras.length)
     console.log(posicao_camera)
 
-
 }
-
-
-// // Pede permissão para acessara câmera, ele gera um erro caso a permisão seja negada
-// Instascan.Camera.getCameras().then(cameras => {
-//     if (cameras.length > 0) {
-//         alert(cameras)
-//         scanner.start(cameras[posicao_camera]);
-//     }
-// });
 
 // Liga a câmera com o front-end, para a visualização do usuário
 let scanner = new Instascan.Scanner({
     video: document.getElementById('preview')
 });
-
-
 
 // Verifica quando um QR code for escaneado
 scanner.addListener('scan', function (content) {
@@ -49,13 +35,11 @@ scanner.addListener('scan', function (content) {
     content = ""
 });
 
-
 // Função para passar o valor do código QR como uma função (retorna o valor do QR)
 
 function retornaScan(codigoQr) {
     alert(codigoQr);
 }
-
 
 function enviarCodigoQR(){
     // const socket = io.connect("https://upright-filly-upward.ngrok-free.app/api")
@@ -85,24 +69,40 @@ function enviarCodigoQR(){
     
 
 
-      const eventSource = new EventSource('https://upright-filly-upward.ngrok-free.app/api');
+    //   const eventSource = new EventSource('https://upright-filly-upward.ngrok-free.app/api');
 
-      eventSource.onmessage = (event) => {
-        const data = JSON.parse(event.data);
-        // Manipular os dados recebidos aqui
-        const dadosContainer = document.getElementById('dados-container');
-        dadosContainer.innerHTML = `
-        <p>Loja: ${data.loja}</p>
-        <p>Preço: ${data.preco}</p>
-        `;
-      };
+    //   eventSource.onmessage = (event) => {
+    //     const data = JSON.parse(event.data);
+    //     // Manipular os dados recebidos aqui
+    //     const dadosContainer = document.getElementById('dados-container');
+    //     dadosContainer.innerHTML = `
+    //     <p>Loja: ${data.loja}</p>
+    //     <p>Preço: ${data.preco}</p>
+    //     `;
+    //   };
 
-      eventSource.onerror = (error) => {
-        console.error('Erro de SSE:', error);
-      };
+    //   eventSource.onerror = (error) => {
+    //     console.error('Erro de SSE:', error);
+    //   };
 
 
+      const fetch = require('fetch');
 
+      // Faz a chamada à API
+      const response = await fetch('https://upright-filly-upward.ngrok-free.app/api');
+      
+      // Espera até que a resposta seja recebida
+      response.then(res => {
+          if (res.status === 200) {
+              // Decodifica o JSON
+              const data = await res.json();
+      
+              // Exibe o JSON
+              console.log(data);
+          } else {
+              console.log('Erro: ', res.status);
+          }
+      });
 
     
 

@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, Response
-from flask_cors import CORS
-from flask_socketio import SocketIO, emit
+# from flask_cors import CORS
+# from flask_socketio import SocketIO, emit
 
 import requests
 from bs4 import BeautifulSoup
@@ -34,19 +34,19 @@ def extrairDados(url):
 
 
 app = Flask(__name__)
-CORS(app)
-socketIO = SocketIO(app)
+# CORS(app)
+# socketIO = SocketIO(app)
 
 
-@socketIO.on('connect')
-def criarConexao():
-    emit('Conectado a API')
+# @socketIO.on('connect')
+# def criarConexao():
+#     emit('Conectado a API')
 
 
 
-@app.route("/api")
+@app.route("/api", methods=['GET'])
 def hello_world():
     resposta = extrairDados("https://portalsped.fazenda.mg.gov.br/portalnfce/sistema/qrcode.xhtml?p=31230713574594030508650010005249781378283311|2|1|1|9CB061C0D016DBEDA8D27E6E20F4BA26025FF4A9")
-    return Response(resposta, content_type='text/event-stream')
+    return resposta
 
 app.run(debug=True,port=80)
