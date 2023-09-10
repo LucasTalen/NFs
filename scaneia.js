@@ -5,6 +5,9 @@ function trocaCamera(){
     Instascan.Camera.getCameras().then(cameras => {
         if (cameras.length > 0) {
             alert(cameras)
+            console.log(cameras.length)
+            console.log(cameras.length())
+            console.log(posicao_camera)
             if (!cameras.length > posicao_camera){
                 posicao_camera += 1
             }
@@ -15,8 +18,6 @@ function trocaCamera(){
             scanner.start(cameras[posicao_camera]);
         }
     });
-    console.log(cameras.length)
-    console.log(posicao_camera)
 
 }
 
@@ -38,12 +39,13 @@ scanner.addListener('scan', function (content) {
 
 function retornaScan(codigoQr) {
     alert(codigoQr);
+    consumirAPI(codigoQr)
 }
 
 
 
-function consumirAPI() {
-    const apiUrl = 'https://upright-filly-upward.ngrok-free.app/api';
+function consumirAPI(url) {
+    const apiUrl = `https://upright-filly-upward.ngrok-free.app/api/${url}`;
 
     
     fetch(apiUrl, {
