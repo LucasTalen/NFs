@@ -89,10 +89,14 @@ function enviarCodigoQR(){
 
       eventSource.onmessage = (event) => {
         const data = JSON.parse(event.data);
-        // Manipule os dados recebidos aqui
-        console.log(data);
+        // Manipular os dados recebidos aqui
+        const dadosContainer = document.getElementById('dados-container');
+        dadosContainer.innerHTML = `
+          <p>Loja: ${data.loja}</p>
+          <p>Preço: ${data.preco}</p>
+        `;
       };
-      
+
       eventSource.onerror = (error) => {
         console.error('Erro de SSE:', error);
       };
