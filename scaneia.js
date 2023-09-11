@@ -24,12 +24,6 @@ Instascan.Camera.getCameras().then(cameras => {
   
         alert(cameras.length)
         alert(posicao_camera)
-        if (!cameras.length > posicao_camera){
-            posicao_camera += 1
-        }
-        else{
-            posicao_camera -= 1
-        }
         scanner.start(cameras[posicao_camera]);
     }
 });
