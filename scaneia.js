@@ -1,4 +1,4 @@
-let posicao_camera = 2
+let posicao_camera = 1
 let desliga = document.getElementById("desligar")
 desliga.addEventListener('click', () => {
     scanner.stop(cameras[posicao_camera])
@@ -8,6 +8,7 @@ let trocaCamera = document.getElementById("trocaCamera")
 trocaCamera.addEventListener('click', () => {
     if (cameras.length == posicao_camera){
         alert("Posição atual das cameras é o limite")
+        scanner.stop(cameras[posicao_camera])
         posicao_camera = 1
         scanner.start(cameras[posicao_camera])
     }
@@ -17,10 +18,11 @@ trocaCamera.addEventListener('click', () => {
     //     scanner.start(cameras[posicao_camera])        
     // }
     else{
-        
+        alert(`Posição atual das cameras é ${posicao_camera}`)
+
+        scanner.stop(cameras[posicao_camera])
         posicao_camera += 1
         scanner.start(cameras[posicao_camera])
-        alert(`Posição atual das cameras é ${posicao_camera}`)
     }
 })
 // Pede permissão para acessara câmera, ele gera um erro caso a permisão seja negada
