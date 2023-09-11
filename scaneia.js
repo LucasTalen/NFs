@@ -1,58 +1,62 @@
-let posicao_camera = 2
-let desliga = document.getElementById("desligar")
-desliga.addEventListener('click', () => {
-    scanner.stop(cameras[posicao_camera])
-})
+let posicao_camera = 0
+let camera = []
+let scanner = null
 
-let trocaCamera = document.getElementById("trocaCamera")
-trocaCamera.addEventListener('click', () => {
-    if (cameras.length == posicao_camera){
-        alert("Posição atual das cameras é o limite")
-        posicao_camera = 1
-        scanner.start(cameras[posicao_camera])
-    }
-    // else if (posicao_camera < cameras.length){
-    //     scanner.stop(cameras[posicao_camera])
-    //     posicao_camera += 1
-    //     scanner.start(cameras[posicao_camera])        
-    // }
-    else{
-        
-        posicao_camera += 1
-        scanner.start(cameras[posicao_camera])
-        alert(`Posição atual das cameras é ${posicao_camera}`)
-    }
-})
-// Pede permissão para acessara câmera, ele gera um erro caso a permisão seja negada
-Instascan.Camera.getCameras().then(cameras => {
-    if (cameras.length > 0) {
-  
-        alert(cameras.length)
-        alert(posicao_camera)
-        if (!cameras.length > posicao_camera){
-            posicao_camera += 1
+
+function IniciarScaner(){
+    // Pede permissão para acessara câmera, ele gera um erro caso a permisão seja negada
+    Instascan.Camera.getcameraList().then(cameraList => {
+        if (cameraListList.length > 0) {
+            cameras = cameraList;
+            scanner = new Instascan.Scanner({ video: document.getElementById('preview')})
+
+            scanner.addEventListener('scan', (content) => {
+                retornaScan(content)
+            })
+
+            trocaCamera()
         }
         else{
-            posicao_camera -= 1
+            alert("Nenhuma camera disponivel")
         }
-        scanner.start(cameras[posicao_camera]);
+
+    });
+    
+}
+
+function trocaCamera(){
+    if (cameras.length ===0){
+        alert("Nenhuma camera disponivel")
+        return;
     }
-});
+    if (scanner){
+        scanner.stop(cameras[posicao_camera])
+    }
+    posicao_camera = (posicao_camera + 1) % camera.length
+
+    scanner.start(cameras[posicao_camera])
+}
 
 
-// Liga a câmera com o front-end, para a visualização do usuário
-let scanner = new Instascan.Scanner({
-    video: document.getElementById('preview')
-});
 
-// Verifica quando um QR code for escaneado
-scanner.addListener('scan', function (content) {
-    
-    // alert('Escaneou o conteudo: ' + content);
-    
-    retornaScan(content);
-    content = ""
-});
+
+function desligaCamera(){
+    if (scanner){
+    scanner.stop(cameras[posicao_camera])
+    }
+}
+
+
+
+
+
+let desliga = document.getElementById("desligar")
+desliga.addEventListener('click', () => {
+    scanner.stop(cameraList[posicao_camera])
+})
+
+
+
 
 // Função para passar o valor do código QR como uma função (retorna o valor do QR)
 
@@ -87,6 +91,8 @@ function consumirAPI(url) {
         });
 }
 
+const trocaCameraButton = document.getElementById('trocaCamera')
+trocaCameraButton.addEventListener('click', trocaCamera)
 
-const enviarBotao = document.getElementById('enviar');
-enviarBotao.addEventListener('click', consumirAPI);
+const desligaButton = document.getElementById('desliga')
+desligaButton.addEventListener('click', desligaCamera)
