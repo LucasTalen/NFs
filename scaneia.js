@@ -1,4 +1,4 @@
-let posicao_camera = 1
+let posicao_camera = 2
 let desliga = document.getElementById("desligar")
 desliga.addEventListener('click', () => {
     scanner.stop(cameras[posicao_camera])
