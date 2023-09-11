@@ -5,23 +5,24 @@ desliga.addEventListener('click', () => {
 })
 
 
+// Pede permissão para acessara câmera, ele gera um erro caso a permisão seja negada
+Instascan.Camera.getCameras().then(cameras => {
+    if (cameras.length > 0) {
+        console.log(cameras.length())
+        console.log(cameras.length)
+        console.log(posicao_camera)
+        if (!cameras.length > posicao_camera){
+            posicao_camera += 1
+        }
+        else{
+            posicao_camera -= 1
+        }
+        console.log(scanner.activeCameraId = cameras[0].id)
+        scanner.start(cameras[posicao_camera]);
+    }
+});
 function trocaCamera(){
 
-    // Pede permissão para acessara câmera, ele gera um erro caso a permisão seja negada
-    Instascan.Camera.getCameras().then(cameras => {
-        if (cameras.length > 0) {
-            console.log(cameras)
-            console.log(posicao_camera)
-            if (!cameras.length > posicao_camera){
-                posicao_camera += 1
-            }
-            else{
-                posicao_camera -= 1
-            }
-            console.log(scanner.activeCameraId = cameras[0].id)
-            scanner.start(cameras[posicao_camera]);
-        }
-    });
 
 }
 
