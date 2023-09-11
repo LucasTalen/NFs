@@ -3,15 +3,11 @@ let desliga = document.getElementById("desligar")
 desliga.addEventListener('click', () => {
     scanner.stop(cameras[posicao_camera])
 })
-let a =Instascan.Camera.getCameras().id
-alert(
-   a
-)
+
 
 let trocaCamera = document.getElementById("trocaCamera")
 trocaCamera.addEventListener('click', () => {
     if (cameras.length == posicao_camera){
-        alert(cameras.id)
         alert("Posição atual das cameras é o limite")
         scanner.stop(cameras[posicao_camera])
         posicao_camera = 1
@@ -28,7 +24,8 @@ trocaCamera.addEventListener('click', () => {
 // Pede permissão para acessara câmera, ele gera um erro caso a permisão seja negada
 Instascan.Camera.getCameras().then(cameras => {
     if (cameras.length > 0) {
-  
+        alert(camera.id)
+        alert(cameras.id)
         alert(cameras.length)
         alert(posicao_camera)
         if (!cameras.length > posicao_camera){
