@@ -3,6 +3,9 @@ let desliga = document.getElementById("desligar")
 desliga.addEventListener('click', () => {
     scanner.stop(cameras[posicao_camera])
 })
+alert(
+    Scanner.getCameras()
+)
 
 let trocaCamera = document.getElementById("trocaCamera")
 trocaCamera.addEventListener('click', () => {
@@ -12,11 +15,6 @@ trocaCamera.addEventListener('click', () => {
         posicao_camera = 1
         scanner.start(cameras[posicao_camera])
     }
-    // else if (posicao_camera < cameras.length){
-    //     scanner.stop(cameras[posicao_camera])
-    //     posicao_camera += 1
-    //     scanner.start(cameras[posicao_camera])        
-    // }
     else{
         alert(`Posição atual das cameras é ${posicao_camera}`)
 
