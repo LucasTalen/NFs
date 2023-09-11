@@ -3,7 +3,7 @@ let desliga = document.getElementById("desligar")
 desliga.addEventListener('click', () => {
     scanner.stop(cameras[posicao_camera])
 })
-let a =Instascan.Camera.getCameras()
+let a =Instascan.Camera.getCameras().id
 alert(
    a
 )
