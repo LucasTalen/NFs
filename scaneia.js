@@ -5,23 +5,40 @@ desliga.addEventListener('click', () => {
 })
 
 function trocaCamera() {
-    Instascan.Camera.getCameras().then(cameras => {
-        if (cameras.length > 0) {
-      
-            alert(cameras.length)
-            alert(posicao_camera)
-            if (!cameras.length > posicao_camera){
-                posicao_camera += 1
-            }
-            else{
-                posicao_camera -= 1
-            }
-            scanner.start(cameras[posicao_camera]);
-        }
-    });
-}
-// Pede permissão para acessara câmera, ele gera um erro caso a permisão seja negada
+    if (cameras.length == posicao_camera){
+        alert("Posição atual das cameras é o limite")
+        scanner.stop(cameras[posicao_camera])
+        posicao_camera = 1
+        scanner.start(cameras[posicao_camera])
+    }
+    // else if (posicao_camera < cameras.length){
+    //     scanner.stop(cameras[posicao_camera])
+    //     posicao_camera += 1
+    //     scanner.start(cameras[posicao_camera])        
+    // }
+    else{
+        alert(`Posição atual das cameras é ${posicao_camera}`)
 
+        scanner.stop(cameras[posicao_camera])
+        posicao_camera += 1
+        scanner.start(cameras[posicao_camera])
+    }
+})
+// Pede permissão para acessara câmera, ele gera um erro caso a permisão seja negada
+Instascan.Camera.getCameras().then(cameras => {
+    if (cameras.length > 0) {
+  
+        alert(cameras.length)
+        alert(posicao_camera)
+        if (!cameras.length > posicao_camera){
+            posicao_camera += 1
+        }
+        else{
+            posicao_camera -= 1
+        }
+        scanner.start(cameras[posicao_camera]);
+    }
+});
 
 
 // Liga a câmera com o front-end, para a visualização do usuário
