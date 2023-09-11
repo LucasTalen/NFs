@@ -1,30 +1,38 @@
-let posicao_camera = 1
+let posicao_camera = 0
 let desliga = document.getElementById("desligar")
 desliga.addEventListener('click', () => {
     scanner.stop(cameras[posicao_camera])
 })
 
-
+let trocaCamera = document.getElementById("trocaCamera")
+trocaCamera.addEventListener('click', () => {
+    if (!cameras.length === posicao_camera){
+        scanner.stop(cameras[posicao_camera])
+        posicao_camera --
+        scanner.start(cameras[posicao_camera])
+    }
+    else{
+        scanner.stop(cameras[posicao_camera])
+        posicao_camera ++
+        scanner.start(cameras[posicao_camera])
+    }
+})
 // Pede permissão para acessara câmera, ele gera um erro caso a permisão seja negada
 Instascan.Camera.getCameras().then(cameras => {
     if (cameras.length > 0) {
   
-        console.log(cameras.length)
-        console.log(posicao_camera)
+        alert(cameras.length)
+        alert(posicao_camera)
         if (!cameras.length > posicao_camera){
             posicao_camera += 1
         }
         else{
             posicao_camera -= 1
         }
-        console.log(scanner.activeCameraId = cameras[0].id)
         scanner.start(cameras[posicao_camera]);
     }
 });
-function trocaCamera(){
 
-
-}
 
 // Liga a câmera com o front-end, para a visualização do usuário
 let scanner = new Instascan.Scanner({
