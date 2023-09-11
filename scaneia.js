@@ -1,4 +1,10 @@
 let posicao_camera = 1
+let desliga = document.getElementById("desligar")
+desliga.addEventListener('click', () => {
+    scanner.stop(cameras[posicao_camera])
+})
+
+
 function trocaCamera(){
 
     // Pede permissão para acessara câmera, ele gera um erro caso a permisão seja negada
