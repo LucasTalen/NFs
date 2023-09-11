@@ -6,14 +6,19 @@ desliga.addEventListener('click', () => {
 
 let trocaCamera = document.getElementById("trocaCamera")
 trocaCamera.addEventListener('click', () => {
-    if (!cameras.length === posicao_camera){
+    if (cameras.length == posicao_camera){
         scanner.stop(cameras[posicao_camera])
-        posicao_camera --
+        posicao_camera = 1
         scanner.start(cameras[posicao_camera])
     }
+    // else if (posicao_camera < cameras.length){
+    //     scanner.stop(cameras[posicao_camera])
+    //     posicao_camera += 1
+    //     scanner.start(cameras[posicao_camera])        
+    // }
     else{
         scanner.stop(cameras[posicao_camera])
-        posicao_camera ++
+        posicao_camera += 1
         scanner.start(cameras[posicao_camera])
     }
 })
