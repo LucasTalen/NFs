@@ -11,6 +11,7 @@ alert(
 let trocaCamera = document.getElementById("trocaCamera")
 trocaCamera.addEventListener('click', () => {
     if (cameras.length == posicao_camera){
+        alert(cameras.id)
         alert("Posição atual das cameras é o limite")
         scanner.stop(cameras[posicao_camera])
         posicao_camera = 1
