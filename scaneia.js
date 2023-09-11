@@ -4,7 +4,8 @@ desliga.addEventListener('click', () => {
     scanner.stop(cameras[posicao_camera])
 })
 
-function trocaCamera() {
+let trocaCamera = document.getElementById("trocaCamera")
+trocaCamera.addEventListener('click', () => {
     if (cameras.length == posicao_camera){
         alert("Posição atual das cameras é o limite")
         scanner.stop(cameras[posicao_camera])
