@@ -6,20 +6,13 @@ desliga.addEventListener('click', () => {
 
 let trocaCamera = document.getElementById("trocaCamera")
 trocaCamera.addEventListener('click', () => {
+    scanner.stop(cameras[posicao_camera])
     if (cameras.length == posicao_camera){
         alert("Posição atual das cameras é o limite")
-        scanner.stop(cameras[posicao_camera])
         posicao_camera = 1
         scanner.start(cameras[posicao_camera])
     }
-    // else if (posicao_camera < cameras.length){
-    //     scanner.stop(cameras[posicao_camera])
-    //     posicao_camera += 1
-    //     scanner.start(cameras[posicao_camera])        
-    // }
     else{
-        
-        scanner.stop(cameras[posicao_camera])
         posicao_camera += 1
         scanner.start(cameras[posicao_camera])
         alert(`Posição atual das cameras é ${posicao_camera}`)
@@ -31,12 +24,6 @@ Instascan.Camera.getCameras().then(cameras => {
   
         alert(cameras.length)
         alert(posicao_camera)
-        if (!cameras.length > posicao_camera){
-            posicao_camera += 1
-        }
-        else{
-            posicao_camera -= 1
-        }
         scanner.start(cameras[posicao_camera]);
     }
 });
