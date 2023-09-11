@@ -6,7 +6,7 @@ let scanner = null
 function IniciarScaner(){
     // Pede permissão para acessara câmera, ele gera um erro caso a permisão seja negada
     Instascan.Camera.getcameraList().then(cameraList => {
-        if (cameraListList.length > 0) {
+        if (cameraList.length > 0) {
             cameras = cameraList;
             scanner = new Instascan.Scanner({ video: document.getElementById('preview')})
 
