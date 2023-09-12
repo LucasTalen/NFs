@@ -1,4 +1,20 @@
-let posicao_camera = 2
+let posicao_camera = 1
+alert('hello')
+
+// Pede permissão para acessara câmera, ele gera um erro caso a permisão seja negada
+Instascan.Camera.getCameras().then(cameras => {
+    if (cameras.length > 0) {
+        let cameraSelecionada = cameras.find(camera => camera.id)
+        console.log(cameraSelecionada.id)
+        alert(cameraSelecionada.id)
+        scanner.start(cameraSelecionada);
+    }
+});
+
+
+
+
+
 let desliga = document.getElementById("desligar")
 desliga.addEventListener('click', () => {
     scanner.stop(cameras[posicao_camera])
@@ -21,20 +37,6 @@ trocaCamera.addEventListener('click', () => {
         scanner.start(cameras[posicao_camera])
     }
 })
-// Pede permissão para acessara câmera, ele gera um erro caso a permisão seja negada
-Instascan.Camera.getCameras().then(cameras => {
-    if (cameras.length > 0) {
-        alert(cameras.length)
-        alert(posicao_camera)
-        if (!cameras.length > posicao_camera){
-            posicao_camera += 1
-        }
-        else{
-            posicao_camera -= 1
-        }
-        scanner.start(cameras[posicao_camera]);
-    }
-});
 
 
 // Liga a câmera com o front-end, para a visualização do usuário
