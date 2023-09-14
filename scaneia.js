@@ -7,9 +7,7 @@ Instascan.Camera.getCameras().then(cameras => {
     if (cameras.length > 0) {
         cameraDisponivel = cameras.filter(camera => camera.id)
 
-        console.log(cameras)
         scanner.start(cameras[cameraSelecionada]);
-        console.log(cameraSelecionada)
         cameraDisponivel = cameras.filter(camera => camera.id)
         cameraLivre = cameraDisponivel.length
         
@@ -20,8 +18,7 @@ let trocaCamera = document.getElementById("trocaCamera")
 trocaCamera.addEventListener('click', () => {
     scanner.stop()
    cameraSelecionada = (cameraSelecionada + 1) % cameraLivre
-    console.log(cameraDisponivel)
-    console.log(cameraSelecionada)
+
     scanner.start(cameraDisponivel[cameraSelecionada]);
 
 })
