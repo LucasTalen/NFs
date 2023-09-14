@@ -8,7 +8,9 @@ import pandas as pd
 
 #---------------------------------------
 #você tem que herdar o meu código js no progama e puxar a função 
+tabela = []
 total = 0.0
+
 def extrairDados(url):
     site = requests.get(url).text
     nome = BeautifulSoup(site, "html.parser")
@@ -23,7 +25,13 @@ def extrairDados(url):
         valor = float(b[-1][-1].replace(",","."))
         valor = round(valor,2)
         compra = dict(loja = loja, preco =valor)
-        return jsonify(compra)     
+        tabela.append(compra)
+        #------------
+        df = pd.DataFrame(tabela)
+        tabela_html = df.to_html()
+        print(tabela_html)
+        return tabela_html 
+    #jsonify(compra)     
 
 #------------------------------------------
 

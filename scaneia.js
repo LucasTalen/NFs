@@ -78,6 +78,7 @@ function consumirAPI(url) {
         .then(data => {
 
             console.log(data);
+            montarTabela(data)
         })
         .catch(error => {
             console.error('Ocorreu um erro ao consumir a API:', error);
@@ -86,7 +87,6 @@ function consumirAPI(url) {
 
 
 function montarTabela(dados){
-    tabela = document.getElementById("tabela")
-
+    tabela = document.getElementById("tabela").innerHTML= dados
 
 }
