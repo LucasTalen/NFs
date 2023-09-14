@@ -9,47 +9,49 @@ Instascan.Camera.getCameras().then(cameras => {
         
         scanner.start(cameraDisponivel[1]);
         console.log(cameraSelecionada)
-    }
-});
 
-let trocaCamera = document.getElementById("trocaCamera")
-trocaCamera.addEventListener('click', () => {
- 
-   cameraSelecionada = (cameraSelecionada + 1) % cameraDisponivel
-   console.log(cameraDisponivel)
-   console.log(cameraSelecionada)
+        let trocaCamera = document.getElementById("trocaCamera")
+        trocaCamera.addEventListener('click', () => {
+        cameraDisponivel = cameras.filter(camera => camera.id)
 
-    scanner.start(cameraDisponivel[cameraSelecionada]);
+           cameraSelecionada = (cameraSelecionada + 1) % cameraDisponivel
+           console.log(cameraDisponivel)
+           console.log(cameraSelecionada)
+        
+            scanner.start(cameraDisponivel[cameraSelecionada]);
+        
+        })
+        
+        
+        let desliga = document.getElementById("desligar")
+        desliga.addEventListener('click', () => {
+            scanner.stop(cameras[posicao_camera])
+        })
+        
+        
+        
+        // Liga a câmera com o front-end, para a visualização do usuário
+        let scanner = new Instascan.Scanner({
+            video: document.getElementById('preview')
+        });
+        
+        // Verifica quando um QR code for escaneado
+        scanner.addListener('scan', function (content) {
+        
+            retornaScan(content);
+            content = ""
+        });
+        
+        // Função para passar o valor do código QR como uma função (retorna o valor do QR)
+        
+        function retornaScan(codigoQr) {
+            alert(codigoQr);
+            consumirAPI(codigoQr)
+        }
+        
 
-})
-
-
-let desliga = document.getElementById("desligar")
-desliga.addEventListener('click', () => {
-    scanner.stop(cameras[posicao_camera])
-})
-
-
-
-// Liga a câmera com o front-end, para a visualização do usuário
-let scanner = new Instascan.Scanner({
-    video: document.getElementById('preview')
-});
-
-// Verifica quando um QR code for escaneado
-scanner.addListener('scan', function (content) {
-
-    retornaScan(content);
-    content = ""
-});
-
-// Função para passar o valor do código QR como uma função (retorna o valor do QR)
-
-function retornaScan(codigoQr) {
-    alert(codigoQr);
-    consumirAPI(codigoQr)
-}
-
+    }    
+});    
 
 
 function consumirAPI(url) {
