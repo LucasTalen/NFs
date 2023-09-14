@@ -1,11 +1,12 @@
 let posicao_camera = 1
 let cameraDisponivel;
-let cameraSelecionada;
+let cameraSelecionada = 0;
 // Pede permissão para acessara câmera, ele gera um erro caso a permisão seja negada
 Instascan.Camera.getCameras().then(cameras => {
     if (cameras.length > 0) {
         var cameraDisponivel = cameras.filter(camera => camera.id)
         console.log(cameraDisponivel)
+        console.log(cameraSelecionada)
         cameraSelecionada = cameraDisponivel[0]
         scanner.start(cameraSelecionada);
     }
@@ -14,7 +15,9 @@ Instascan.Camera.getCameras().then(cameras => {
 let trocaCamera = document.getElementById("trocaCamera")
 trocaCamera.addEventListener('click', () => {
    cameraSelecionada = cameraDisponivel[(cameraSelecionada + 1) % cameraDisponivel]
+   console.log(cameraDisponivel)
    console.log(cameraSelecionada)
+
     scanner.start(cameraSelecionada);
 
 })
