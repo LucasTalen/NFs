@@ -4,10 +4,10 @@ alert('hello')
 // Pede permissão para acessara câmera, ele gera um erro caso a permisão seja negada
 Instascan.Camera.getCameras().then(cameras => {
     if (cameras.length > 0) {
-        let cameraSelecionada = cameras.find(camera => camera.id)
+        let cameraSelecionada = cameras.filter(camera => camera.id)
         console.log(cameraSelecionada.id)
         alert(cameraSelecionada.id)
-        scanner.start(cameraSelecionada);
+        scanner.start(cameraSelecionada[0]);
     }
 });
 
