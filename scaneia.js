@@ -39,16 +39,29 @@ let scanner = new Instascan.Scanner({
 // Verifica quando um QR code for escaneado
 scanner.addListener('scan', function (content) {
 
-    retornaScan(content);
+    consumirAPI(content)
     content = ""
 });
 
-// Função para passar o valor do código QR como uma função (retorna o valor do QR)
 
-function retornaScan(codigoQr) {
-    alert(codigoQr);
-    consumirAPI(codigoQr)
-}
+
+//----------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -61,14 +74,9 @@ function consumirAPI(url) {
             'ngrok-skip-browser-warning': 'true'
         }
     })
-        .then(response => response.json())
+        .then(response => response.text())
         .then(data => {
-            const dadosApi = document.getElementById('dados-api');
-            dadosApi.innerHTML = `
-                <p>Loja: ${data.loja}</p>
-                <p>Preço: R$ ${data.preco}</p>
-                
-            `;
+
             console.log(data);
         })
         .catch(error => {
@@ -77,3 +85,8 @@ function consumirAPI(url) {
 }
 
 
+function montarTabela(dados){
+    tabela = document.getElementById("tabela")
+
+
+}
