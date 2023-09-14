@@ -14,7 +14,8 @@ Instascan.Camera.getCameras().then(cameras => {
 
 let trocaCamera = document.getElementById("trocaCamera")
 trocaCamera.addEventListener('click', () => {
-   cameraSelecionada = cameraDisponivel[(cameraSelecionada + 1) % cameraDisponivel]
+ 
+   cameraSelecionada = (cameraSelecionada + 1) % cameraDisponivel
    console.log(cameraDisponivel)
    console.log(cameraSelecionada)
 
