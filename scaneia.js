@@ -10,7 +10,7 @@ Instascan.Camera.getCameras().then(cameras => {
         scanner.start(cameras[cameraSelecionada]);
         console.log(cameraSelecionada)
         cameraDisponivel = cameras.filter(camera => camera.id)
-        cameraSelecionada = cameraDisponivel.length
+        cameraDisponivel = cameraDisponivel.length
         
     }
 });
