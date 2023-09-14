@@ -1,17 +1,13 @@
 let posicao_camera = 1
-alert('hello')
+let cameraSelecionada = cameras.filter(camera => camera.id)
 
 // Pede permissão para acessara câmera, ele gera um erro caso a permisão seja negada
 Instascan.Camera.getCameras().then(cameras => {
     if (cameras.length > 0) {
-        let cameraSelecionada = cameras.filter(camera => camera.id)
         console.log(cameraSelecionada)
         scanner.start(cameraSelecionada[1]);
     }
 });
-
-
-
 
 
 let desliga = document.getElementById("desligar")
@@ -34,9 +30,7 @@ let scanner = new Instascan.Scanner({
 
 // Verifica quando um QR code for escaneado
 scanner.addListener('scan', function (content) {
-    
-    // alert('Escaneou o conteudo: ' + content);
-    
+
     retornaScan(content);
     content = ""
 });
@@ -75,5 +69,3 @@ function consumirAPI(url) {
 }
 
 
-const enviarBotao = document.getElementById('enviar');
-enviarBotao.addEventListener('click', consumirAPI);
