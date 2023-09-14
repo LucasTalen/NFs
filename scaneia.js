@@ -5,11 +5,12 @@ let cameraSelecionada = 0;
 Instascan.Camera.getCameras().then(cameras => {
     if (cameras.length > 0) {
         cameraDisponivel = cameras.filter(camera => camera.id)
+
         console.log(cameraDisponivel)
         console.log(cameras)
         scanner.start(cameraDisponivel[0]);
         console.log(cameraSelecionada)
-        cameraDisponivel = cameras.filter(camera => camera.id)
+        cameraDisponivel = cameras.length
         
     }
 });
