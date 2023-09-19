@@ -9,6 +9,8 @@ import pandas as pd
 #---------------------------------------
 #você tem que herdar o meu código js no progama e puxar a função 
 tabela = []
+links = []
+resposta = ''
 total = 0.0
 
 def extrairDados(url):
@@ -34,10 +36,23 @@ def extrairDados(url):
     #jsonify(compra)     
 
 #------------------------------------------
+def verificarURL(url):    
+    if "https://portalsped.fazenda.mg.gov.br/portalnfce/sistema/qrcode.xhtml?p=" in url:
+        if not url in links:
+            links.append(url)
+            resposta = extrairDados(url)
+            print(type(resposta))
+            print("------------------------")
+        else:
+            print("link ja foi adicionado")
+            resposta = "link ja foi adicionado"
+    else:
+        resposta = "link errado"
+        print("link errado")
+    return resposta
+        
+    
 
-
-
-link = "https://portalsped.fazenda.mg.gov.br/portalnfce/sistema/qrcode.xhtml?p=31230713574594030508650010005249781378283311|2|1|1|9CB061C0D016DBEDA8D27E6E20F4BA26025FF4A9"
 
 app = Flask(__name__)
 CORS(app)
@@ -47,7 +62,7 @@ CORS(app)
 def hello_world():
     url = request.args.get('url')
     print(url)
-    resposta = extrairDados(url)
+    resposta = verificarURL(url)
     print(resposta)
     return resposta
     
