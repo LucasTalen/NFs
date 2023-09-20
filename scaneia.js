@@ -76,9 +76,14 @@ function consumirAPI(url) {
     })
         .then(response => response.text())
         .then(data => {
-
-            console.log(data);
-            montarTabela(data)
+            if (data == "link ja foi adicionado"){
+                alert("Esse link já foi adicionado!")
+            }else if (data == "link errado"){
+                alert("Esse codigo QR não esta disponivel para uso!")
+            }else{
+                console.log(data);
+                montarTabela(data)
+            }
         })
         .catch(error => {
             console.error('Ocorreu um erro ao consumir a API:', error);
