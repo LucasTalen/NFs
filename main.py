@@ -2,12 +2,13 @@ import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 
+tabela_usuario = {}
 tabela = []
 links = []
 resposta = ''
 total = 0.0
 
-def extrairDados(url):
+def extrairDados(token, url):
     site = requests.get(url).text
     nome = BeautifulSoup(site, "html.parser")
     loja = nome.find("table").b.text
@@ -22,7 +23,8 @@ def extrairDados(url):
         valor = round(valor,2)
         compra = dict(loja = loja, preco =valor)
         tabela.append(compra)
-        df = pd.DataFrame(tabela)
+        tabela_usuario[token] = tabela
+        df = pd.DataFrame(tabela_usuario[token])
         tabela_html = df.to_html()
         return tabela_html 
    

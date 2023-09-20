@@ -52,7 +52,7 @@ scanner.addListener('scan', function (content) {
 
 
 function criarToken(){
-    token = Math.floor(Math.random() * 100)
+    token =  Math.random().toString(20).substring(2);
 }
 
 

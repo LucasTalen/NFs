@@ -10,6 +10,8 @@ CORS(app)
 def hello_world(token):
     url = request.args.get('url')
     print(url)
+    print("-----------------------------")
+    print(token)
     resposta = verificarURL(url)
     print(resposta)
     return resposta
