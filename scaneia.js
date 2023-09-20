@@ -2,6 +2,7 @@ let posicao_camera = 1
 let cameraDisponivel;
 let cameraSelecionada = 0;
 let cameraLivre;
+let token;
 // Pede permissão para acessara câmera, ele gera um erro caso a permisão seja negada
 Instascan.Camera.getCameras().then(cameras => {
     if (cameras.length > 0) {
@@ -50,7 +51,9 @@ scanner.addListener('scan', function (content) {
 
 
 
-
+function criarToken(){
+    token = Math.floor(Math.random() * 100)
+}
 
 
 
@@ -66,7 +69,7 @@ scanner.addListener('scan', function (content) {
 
 
 function consumirAPI(url) {
-    const apiUrl = `https://upright-filly-upward.ngrok-free.app/api?url=${url}`;
+    const apiUrl = `https://upright-filly-upward.ngrok-free.app/api/${token}/?url=${url}`;
 
     
     fetch(apiUrl, {
