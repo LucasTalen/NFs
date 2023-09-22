@@ -3,10 +3,32 @@ from bs4 import BeautifulSoup
 import pandas as pd
 
 tabela_usuario = {}
-tabela = []
+# tabela = []
 links = []
 resposta = ''
 total = 0.0
+
+def criarTabela(token,compra):
+    try:
+        if not tabela_usuario[token] == []:
+            print("ok")
+    except:
+        tabela_usuario[token] = []    
+    
+    tabela_usuario[token].append(compra)
+    print("Passou aqui no criarTabela")
+    print(tabela_usuario)
+    return criarTabelaHTML(tabela_usuario[token])
+
+
+def criarTabelaHTML(tabela):
+    print("Passou aqui no criarTabelaHTML")
+    df = pd.DataFrame(tabela)
+    tabela_html = df.to_html()
+    print(tabela_html)
+    return tabela_html
+    
+
 
 def extrairDados(token, url):
     site = requests.get(url).text
@@ -21,19 +43,24 @@ def extrairDados(token, url):
         b[-1] = b[-1].split()
         valor = float(b[-1][-1].replace(",","."))
         valor = round(valor,2)
-        compra = dict(loja = loja, preco =valor)
-        tabela.append(compra)
-        tabela_usuario[token] = tabela
-        df = pd.DataFrame(tabela_usuario[token])
-        tabela_html = df.to_html()
-        return tabela_html 
+        compra = dict(loja = loja, preco = valor)
+        print("Passou aqui")
+        return criarTabela(token,compra)
+        # tabela.append(compra)
+        # tabela_usuario[token] = tabela
+        # print(tabela_usuario)
+
+
+
+
+        
    
 
-def verificarURL(url):    
+def verificarURL(token,url):    
     if "https://portalsped.fazenda.mg.gov.br/portalnfce/sistema/qrcode.xhtml?p=" in url:
         if not url in links:
             links.append(url)
-            resposta = extrairDados(url)
+            resposta = extrairDados(token,url)
         else:
             resposta = "link ja foi adicionado"
     else:

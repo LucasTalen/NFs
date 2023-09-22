@@ -12,7 +12,7 @@ def hello_world(token):
     print(url)
     print("-----------------------------")
     print(token)
-    resposta = verificarURL(url)
+    resposta = verificarURL(token,url)
     print(resposta)
     return resposta
     
