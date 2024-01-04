@@ -73,9 +73,6 @@ function consumirAPI(url) {
 
     
     fetch(apiUrl, {
-        headers: {
-            'ngrok-skip-browser-warning': 'true'
-        }
     })
         .then(response => response.text())
         .then(data => {
