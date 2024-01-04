@@ -25,4 +25,4 @@ def baixar(token):
     criar_planilha(tabela)
     return send_file(r'C:\Users\Lucas\Documents\NFs\arquivo_para_download\planilha_Nfs.csv', as_attachment=True)
 
-app.run(debug=True,port=80)
+app.run(debug=True,port=5000)
