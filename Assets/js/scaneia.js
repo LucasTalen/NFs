@@ -71,13 +71,11 @@ function criarToken(){
 function consumirAPI(url) {
     const apiUrl = `https://189.49.86.101:5000/api/${token}/?url=${url}`;
 
-    const xhr = new XMLHttpRequest();
-    
-    xhr.open('GET', apiUrl, true);
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState === XMLHttpRequest.DONE) {
-        if (xhr.status >= 200 && xhr.status < 300) {
-          const data = xhr.responseText;
+    axios.get(apiUrl, {
+        httpsAgent: new (require('https').Agent)({ rejectUnauthorized: false })
+      })
+        .then(response => {
+          const data = response.data;
           if (data === 'link ja foi adicionado') {
             alert('Esse link já foi adicionado!');
           } else if (data === 'link errado') {
@@ -86,17 +84,10 @@ function consumirAPI(url) {
             console.log(data);
             montarTabela(data);
           }
-        } else {
-          console.error('Ocorreu um erro ao consumir a API:', xhr.statusText);
-        }
-      }
-    };
-    
-    xhr.onerror = function () {
-      console.error('Erro de rede ao fazer requisição.');
-    };
-    xhr.withCredentials = true;
-    xhr.send();
+        })
+        .catch(error => {
+          console.error('Ocorreu um erro ao consumir a API:', error);
+        });
     
     // const apiUrl = `https://189.49.86.101:5000/api/${token}/?url=${url}`;
 
