@@ -57,17 +57,6 @@ function criarToken(){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 function consumirAPI(url) {
 
     
