@@ -69,7 +69,7 @@ function criarToken(){
 
 
 function consumirAPI(url) {
-    const apiUrl = `http://189.49.86.101:5000/api/${token}/?url=${url}`;
+    const apiUrl = `https://189.49.86.101:5000/api/${token}/?url=${url}`;
 
     const xhr = new XMLHttpRequest();
     
@@ -95,7 +95,7 @@ function consumirAPI(url) {
     xhr.onerror = function () {
       console.error('Erro de rede ao fazer requisição.');
     };
-    
+    xhr.withCredentials = true;
     xhr.send();
     
     // const apiUrl = `https://189.49.86.101:5000/api/${token}/?url=${url}`;
