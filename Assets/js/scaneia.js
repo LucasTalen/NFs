@@ -73,7 +73,7 @@ function consumirAPI(url) {
 
     
     fetch(apiUrl, {
-        agent: new URL('https://sua-url-aqui.com').protocol === 'https:' ? new (window).Agent({ rejectUnauthorized: false }) : null    })
+        insecure: true,})
         .then(response => response.text())
         .then(data => {
             if (data == "link ja foi adicionado"){
