@@ -69,8 +69,7 @@ function criarToken(){
 
 
 function consumirAPI(url) {
-    const token = 'seu_token';
-    const url = 'sua_url';
+
     
     // URL do servidor Flask onde está hospedada sua API intermediária
     const apiUrl = `https://189.49.86.101:5000/api/${token}/?url=${url}`;
