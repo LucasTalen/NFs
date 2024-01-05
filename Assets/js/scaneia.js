@@ -69,25 +69,42 @@ function criarToken(){
 
 
 function consumirAPI(url) {
+    const token = 'seu_token';
+    const url = 'sua_url';
+    
+    // URL do servidor Flask onde está hospedada sua API intermediária
     const apiUrl = `https://189.49.86.101:5000/api/${token}/?url=${url}`;
-
-    $.ajax({
-        url: apiUrl,
-        method: 'GET',
-        success: function(response) {
-          if (response === 'link ja foi adicionado') {
-            alert('Esse link já foi adicionado!');
-          } else if (response === 'link errado') {
-            alert('Esse código QR não está disponível para uso!');
-          } else {
-            console.log(response);
-            // Chamada à função montarTabela(data) aqui
-          }
-        },
-        error: function(error) {
-          console.error('Ocorreu um erro ao consumir a API:', error);
+    
+    // Verificando o protocolo para decidir se usa ou não o agente
+    let agent = null;
+    if (new URL(apiUrl).protocol === 'https:') {
+      // Supondo que você tenha a biblioteca HttpsProxyAgent disponível no contexto do navegador
+      agent = new HttpsProxyAgent('https://189.49.86.101:5000/api'); // Configurações do agente aqui
+    }
+    
+    fetch(apiUrl, {
+      agent
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Erro na requisição:', response.status);
         }
+        return response.text();
+      })
+      .then(data => {
+        if (data === "link ja foi adicionado") {
+          alert("Esse link já foi adicionado!");
+        } else if (data === "link errado") {
+          alert("Esse código QR não está disponível para uso!");
+        } else {
+          console.log(data);
+          // Faça o que precisar com os dados recebidos
+        }
+      })
+      .catch(error => {
+        console.error('Ocorreu um erro ao consumir a API:', error);
       });
+    
     
     // const apiUrl = `https://189.49.86.101:5000/api/${token}/?url=${url}`;
 
