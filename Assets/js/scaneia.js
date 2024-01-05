@@ -73,6 +73,7 @@ function consumirAPI(url) {
 
     
     fetch(apiUrl, {
+        agent: new (require('https')).Agent({ rejectUnauthorized: false })
     })
         .then(response => response.text())
         .then(data => {
