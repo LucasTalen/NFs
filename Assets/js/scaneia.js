@@ -71,23 +71,23 @@ function criarToken(){
 function consumirAPI(url) {
     const apiUrl = `https://189.49.86.101:5000/api/${token}/?url=${url}`;
 
-    axios.get(apiUrl, {
-        httpsAgent: new (require('https').Agent)({ rejectUnauthorized: false })
-      })
-        .then(response => {
-          const data = response.data;
-          if (data === 'link ja foi adicionado') {
+    $.ajax({
+        url: apiUrl,
+        method: 'GET',
+        success: function(response) {
+          if (response === 'link ja foi adicionado') {
             alert('Esse link já foi adicionado!');
-          } else if (data === 'link errado') {
+          } else if (response === 'link errado') {
             alert('Esse código QR não está disponível para uso!');
           } else {
-            console.log(data);
-            montarTabela(data);
+            console.log(response);
+            // Chamada à função montarTabela(data) aqui
           }
-        })
-        .catch(error => {
+        },
+        error: function(error) {
           console.error('Ocorreu um erro ao consumir a API:', error);
-        });
+        }
+      });
     
     // const apiUrl = `https://189.49.86.101:5000/api/${token}/?url=${url}`;
 
