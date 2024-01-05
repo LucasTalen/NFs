@@ -71,24 +71,53 @@ function criarToken(){
 function consumirAPI(url) {
     const apiUrl = `https://189.49.86.101:5000/api/${token}/?url=${url}`;
 
+    const xhr = new XMLHttpRequest();
     
-    fetch(apiUrl, {
-        agent: new URL(`https://189.49.86.101:5000/api/${token}/?url=${url}`).protocol === 'https:' ? new (window).Agent({ rejectUnauthorized: false }) : null})
+    xhr.open('GET', apiUrl, true);
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        if (xhr.status >= 200 && xhr.status < 300) {
+          const data = xhr.responseText;
+          if (data === 'link ja foi adicionado') {
+            alert('Esse link já foi adicionado!');
+          } else if (data === 'link errado') {
+            alert('Esse código QR não está disponível para uso!');
+          } else {
+            console.log(data);
+            montarTabela(data);
+          }
+        } else {
+          console.error('Ocorreu um erro ao consumir a API:', xhr.statusText);
+        }
+      }
+    };
+    
+    xhr.onerror = function () {
+      console.error('Erro de rede ao fazer requisição.');
+    };
+    
+    xhr.send();
+    
+    // const apiUrl = `https://189.49.86.101:5000/api/${token}/?url=${url}`;
 
-        .then(response => response.text())
-        .then(data => {
-            if (data == "link ja foi adicionado"){
-                alert("Esse link já foi adicionado!")
-            }else if (data == "link errado"){
-                alert("Esse codigo QR não esta disponivel para uso!")
-            }else{
-                console.log(data);
-                montarTabela(data)
-            }
-        })
-        .catch(error => {
-            console.error('Ocorreu um erro ao consumir a API:', error);
-        });
+    
+    // fetch(apiUrl, {
+    //     agent: new URL(`https://189.49.86.101:5000/api/${token}/?url=${url}`).protocol === 'https:' ? new (window).Agent({ rejectUnauthorized: false }) : null})
+
+    //     .then(response => response.text())
+    //     .then(data => {
+    //         if (data == "link ja foi adicionado"){
+    //             alert("Esse link já foi adicionado!")
+    //         }else if (data == "link errado"){
+    //             alert("Esse codigo QR não esta disponivel para uso!")
+    //         }else{
+    //             console.log(data);
+    //             montarTabela(data)
+    //         }
+    //     })
+    //     .catch(error => {
+    //         console.error('Ocorreu um erro ao consumir a API:', error);
+    //     });
 }
 
 
