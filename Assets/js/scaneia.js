@@ -69,7 +69,7 @@ function criarToken(){
 
 
 function consumirAPI(url) {
-    const apiUrl = `https://189.49.86.101:5000/api/${token}/?url=${url}`;
+    const apiUrl = `http://189.49.86.101:5000/api/${token}/?url=${url}`;
 
     const xhr = new XMLHttpRequest();
     
