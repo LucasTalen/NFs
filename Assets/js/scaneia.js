@@ -57,15 +57,23 @@ function criarToken(){
 
 
 
-function consumirAPI(url) {
 
-    
-    
-    
+
+
+
+
+
+
+
+
+
+
+function consumirAPI(url) {
     const apiUrl = `https://189.49.86.101:5000/api/${token}/?url=${url}`;
 
     
-    fetch(apiUrl
+    fetch(apiUrl)
+
         .then(response => response.text())
         .then(data => {
             if (data == "link ja foi adicionado"){
