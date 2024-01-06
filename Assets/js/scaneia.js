@@ -69,11 +69,16 @@ function criarToken(){
 
 
 function consumirAPI(url) {
-    const apiUrl = `https://189.49.86.101:5000/api/${token}/?url=${url}`;
+    const apiUrl = `https://lucas_talen_serve1.serveo.net//api/${token}/?url=${url}`;
+  // apiUrl = `https://141f1832-813e-442a-9aa8-5a9bafe2a23c-00-2fhzxziwzyf2f.riker.replit.dev/fetch_data?token=${token}&url=${url}`
+   //http://seu_ip_ou_localhost:81/fetch_data?token=seu_token_aqui&url=http://endereco_do_site_aqui
 
-    
-    fetch(apiUrl)
-
+    fetch(apiUrl, {
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Headers': 'Origin, X-Request-Width, Content-Type, Accept'
+        }
+    })
         .then(response => response.text())
         .then(data => {
             if (data == "link ja foi adicionado"){

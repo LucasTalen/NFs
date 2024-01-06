@@ -8,12 +8,6 @@ resposta = ''
 total = 0.0
 
 
-
-
-
-
-
-
 def get_tabela(token):
     return tabela_usuario[token]
 
